@@ -1,0 +1,260 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.home-page {
+  min-height: 100vh;
+}
+
+.container {
+  @include container;
+}
+
+/* Hero Section */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 80vh;
+  padding: $spacing-xl $container-padding;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  gap: $spacing-3xl;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+    min-height: 60vh;
+    padding: $spacing-md $container-padding;
+  }
+}
+
+.hero-content {
+  padding: $spacing-xl 0;
+}
+
+.hero-title {
+  @include heading-1;
+  margin-bottom: $spacing-md;
+}
+
+.hero-subtitle {
+  font-size: $font-size-xl;
+  color: $text-medium;
+  line-height: 1.6;
+  margin-bottom: $spacing-xl;
+  
+  @include mobile {
+    font-size: $font-size-medium;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  gap: $spacing-md;
+  
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.cta-button {
+  @include button-base;
+  
+  &.primary {
+    @include button-primary;
+  }
+  
+  &.secondary {
+    @include button-secondary;
+  }
+  
+  &.large {
+    padding: 1.2rem 2.5rem;
+    font-size: $font-size-xl;
+  }
+  
+  @include mobile {
+    padding: 0.8rem 1.5rem;
+    font-size: $font-size-medium;
+  }
+}
+
+.hero-image {
+  text-align: center;
+  
+  img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-xl;
+  }
+}
+
+/* Featured Models Section */
+.featured-models {
+  padding: $spacing-4xl 0;
+  background: $bg-light;
+
+  h2 {
+    @include heading-2;
+    text-align: center;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.section-subtitle {
+  text-align: center;
+  color: $text-medium;
+  font-size: $font-size-large;
+  margin-bottom: $spacing-3xl;
+}
+
+.models-grid {
+  @include grid-responsive(350px);
+  margin-bottom: $spacing-3xl;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
+
+.featured-model {
+  @include card;
+  @include hover-lift;
+}
+
+.model-image {
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+}
+
+.model-info {
+  padding: $spacing-lg;
+
+  h3 {
+    font-size: $font-size-2xl;
+    color: $text-dark;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.model-price {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $primary-red;
+  margin-bottom: $spacing-md;
+}
+
+.model-description {
+  color: $text-medium;
+  line-height: 1.6;
+  margin-bottom: $spacing-lg;
+}
+
+.learn-more-btn {
+  background: $primary-red;
+  color: $bg-white;
+  padding: 0.7rem 1.5rem;
+  border-radius: $border-radius-sm;
+  text-decoration: none;
+  font-weight: $font-weight-semibold;
+  transition: background $transition-normal;
+  display: inline-block;
+
+  &:hover {
+    background: $dark-red;
+  }
+}
+
+.view-all-models {
+  text-align: center;
+}
+
+.view-all-btn {
+  @include button-secondary;
+  font-size: $font-size-large;
+}
+
+/* Features Section */
+.features {
+  padding: $spacing-4xl 0;
+  background: $bg-white;
+
+  h2 {
+    @include heading-2;
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+  }
+}
+
+.features-grid {
+  @include grid-responsive(250px);
+  
+  @include mobile {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-lg;
+  }
+}
+
+.feature {
+  text-align: center;
+  padding: $spacing-xl $spacing-md;
+
+  h3 {
+    font-size: $font-size-xl;
+    color: $text-dark;
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    color: $text-medium;
+    line-height: 1.6;
+  }
+}
+
+.feature-icon {
+  font-size: $spacing-4xl;
+  margin-bottom: $spacing-md;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, $primary-red, $secondary-red);
+  color: $bg-white;
+  padding: $spacing-4xl 0;
+  text-align: center;
+
+  .cta-content {
+    h2 {
+      font-size: $font-size-4xl;
+      margin-bottom: $spacing-md;
+      
+      @include mobile {
+        font-size: $font-size-3xl;
+      }
+    }
+
+    p {
+      font-size: $font-size-large;
+      margin-bottom: $spacing-xl;
+      opacity: 0.9;
+    }
+  }
+
+  .cta-button.primary {
+    background: $bg-white;
+    color: $primary-red;
+
+    &:hover {
+      background: $bg-light;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+}

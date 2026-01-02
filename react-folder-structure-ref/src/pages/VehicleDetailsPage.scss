@@ -1,0 +1,390 @@
+.vehicle-details-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 2rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Vehicle Header */
+.vehicle-header {
+  margin-bottom: 2rem;
+}
+
+.breadcrumb {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb a {
+  color: #c8102e;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.vehicle-header h1 {
+  font-size: 3rem;
+  color: #333;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.vehicle-meta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.category {
+  background: #c8102e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Image Gallery */
+.image-gallery {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main-image {
+  margin-bottom: 1rem;
+}
+
+.main-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.thumbnail-strip {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.thumbnail {
+  flex-shrink: 0;
+  border: 3px solid transparent;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  transition: border-color 0.3s ease;
+}
+
+.thumbnail:hover {
+  border-color: #c8102e;
+}
+
+.thumbnail.active {
+  border-color: #c8102e;
+}
+
+.thumbnail img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Vehicle Content */
+.vehicle-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.vehicle-info {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-info section {
+  margin-bottom: 2.5rem;
+}
+
+.vehicle-info section:last-child {
+  margin-bottom: 0;
+}
+
+.vehicle-info h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  border-bottom: 2px solid #c8102e;
+  padding-bottom: 0.5rem;
+}
+
+.description-section p {
+  color: #666;
+  line-height: 1.7;
+  font-size: 1.1rem;
+}
+
+/* Specifications */
+.specs-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #c8102e;
+}
+
+.spec-label {
+  font-weight: 600;
+  color: #333;
+}
+
+.spec-value {
+  color: #666;
+  font-weight: 500;
+}
+
+/* Features */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #eee;
+  color: #555;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.features-list li:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #c8102e;
+  font-weight: bold;
+}
+
+.features-list li:last-child {
+  border-bottom: none;
+}
+
+/* Vehicle Actions */
+.vehicle-actions {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.price-info {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.price-label {
+  color: #666;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.price-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c8102e;
+  margin-bottom: 0.5rem;
+}
+
+.price-note {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.test-drive-btn,
+.contact-btn {
+  padding: 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.test-drive-btn {
+  background: linear-gradient(135deg, #c8102e, #e60012);
+  color: white;
+}
+
+.test-drive-btn:hover {
+  background: linear-gradient(135deg, #a00e26, #cc0010);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(200, 16, 46, 0.3);
+}
+
+.contact-btn {
+  background: transparent;
+  color: #c8102e;
+  border: 2px solid #c8102e;
+}
+
+.contact-btn:hover {
+  background: #c8102e;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.availability {
+  text-align: center;
+}
+
+.availability-status {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.availability-status.available {
+  color: #28a745;
+}
+
+.availability-status.unavailable {
+  color: #dc3545;
+}
+
+/* Test Drive Section */
+.test-drive-section {
+  margin-top: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .vehicle-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .vehicle-actions {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .vehicle-details-page {
+    padding: 1rem 0;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .vehicle-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .vehicle-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .image-gallery {
+    padding: 1rem;
+  }
+  
+  .main-image img {
+    height: 250px;
+  }
+  
+  .thumbnail img {
+    width: 60px;
+    height: 45px;
+  }
+  
+  .vehicle-info,
+  .vehicle-actions {
+    padding: 1.5rem;
+  }
+  
+  .vehicle-info h2 {
+    font-size: 1.3rem;
+  }
+  
+  .price-value {
+    font-size: 1.6rem;
+  }
+  
+  .spec-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .thumbnail-strip {
+    gap: 0.5rem;
+  }
+  
+  .thumbnail img {
+    width: 50px;
+    height: 38px;
+  }
+  
+  .action-buttons {
+    gap: 0.8rem;
+  }
+  
+  .test-drive-btn,
+  .contact-btn {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+}
