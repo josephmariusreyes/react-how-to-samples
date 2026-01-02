@@ -1,0 +1,84 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.test-drive-form {
+  @include card;
+  padding: $spacing-xl;
+  max-width: 600px;
+  margin: 0 auto;
+
+  h3 {
+    color: $text-dark;
+    margin-bottom: $spacing-sm;
+    font-size: $font-size-3xl;
+    
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  @include mobile {
+    padding: $spacing-lg;
+    margin: 0 $spacing-md;
+  }
+}
+
+.form-subtitle {
+  color: $text-medium;
+  margin-bottom: $spacing-xl;
+  font-style: italic;
+}
+
+.form-message {
+  @include status-message;
+  
+  &.success {
+    @include status-success;
+  }
+  
+  &.error {
+    @include status-error;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    @include form-label;
+  }
+
+  input,
+  select,
+  textarea {
+    @include form-input;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+}
+
+.submit-button {
+  @include button-primary;
+  align-self: flex-start;
+  font-size: $font-size-large;
+}
