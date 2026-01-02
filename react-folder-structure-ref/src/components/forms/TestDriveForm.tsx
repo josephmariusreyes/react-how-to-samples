@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { TestDriveForm, FormStatus } from '../../types';
+import React from 'react';
+import { TestDriveForm } from '../../types';
+import { useForm } from '../../hooks/useForm';
 import './TestDriveForm.scss';
 
 interface TestDriveFormProps {
@@ -13,82 +14,47 @@ const TestDriveFormComponent: React.FC<TestDriveFormProps> = ({
   carModelName, 
   onSubmit 
 }) => {
-  const [formData, setFormData] = useState<TestDriveForm>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    preferredDate: '',
-    preferredTime: '',
-    message: '',
-    carModelId: carModelId
-  });
-  
-  const [status, setStatus] = useState<FormStatus>('idle');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('submitting');
-    
-    try {
+  const form = useForm<TestDriveForm>({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      preferredDate: '',
+      preferredTime: '',
+      message: '',
+      carModelId: carModelId
+    },
+    onSubmit: async (values) => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       if (onSubmit) {
-        onSubmit(formData);
+        onSubmit(values);
       }
-      
-      setStatus('success');
-      
-      // Reset form after success
-      setTimeout(() => {
-        setStatus('idle');
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          preferredDate: '',
-          preferredTime: '',
-          message: '',
-          carModelId: carModelId
-        });
-      }, 3000);
-      
-    } catch (error) {
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
-    }
-  };
-
-  const isSubmitting = status === 'submitting';
+    },
+    resetAfterSubmit: true,
+    resetDelay: 3000
+  });
 
   return (
     <div className="test-drive-form">
       <h3>Schedule a Test Drive</h3>
       <p className="form-subtitle">Experience the {carModelName} yourself</p>
       
-      {status === 'success' && (
+      {form.status === 'success' && (
         <div className="form-message success">
           ✅ Thank you! Your test drive request has been submitted. We'll contact you soon to confirm the appointment.
         </div>
       )}
       
-      {status === 'error' && (
+      {form.status === 'error' && (
         <div className="form-message error">
           ❌ There was an error submitting your request. Please try again.
         </div>
       )}
       
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={form.handleSubmit} className="form">
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="firstName">First Name *</label>
@@ -96,10 +62,10 @@ const TestDriveFormComponent: React.FC<TestDriveFormProps> = ({
               type="text"
               id="firstName"
               name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
+              value={form.values.firstName}
+              onChange={form.handleChange}
               required
-              disabled={isSubmitting}
+              disabled={form.isSubmitting}
             />
           </div>
           
@@ -109,10 +75,10 @@ const TestDriveFormComponent: React.FC<TestDriveFormProps> = ({
               type="text"
               id="lastName"
               name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
+              value={form.values.lastName}
+              onChange={form.handleChange}
               required
-              disabled={isSubmitting}
+              disabled={form.isSubmitting}
             />
           </div>
         </div>
@@ -124,10 +90,10 @@ const TestDriveFormComponent: React.FC<TestDriveFormProps> = ({
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={form.values.email}
+              onChange={form.handleChange}
               required
-              disabled={isSubmitting}
+              disabled={form.isSubmitting}
             />
           </div>
           
@@ -137,10 +103,10 @@ const TestDriveFormComponent: React.FC<TestDriveFormProps> = ({
               type="tel"
               id="phone"
               name="phone"
-              value={formData.phone}
-              onChange={handleChange}
+              value={form.values.phone}
+              onChange={form.handleChange}
               required
-              disabled={isSubmitting}
+              disabled={form.isSubmitting}
             />
           </div>
         </div>
@@ -152,10 +118,10 @@ const TestDriveFormComponent: React.FC<TestDriveFormProps> = ({
               type="date"
               id="preferredDate"
               name="preferredDate"
-              value={formData.preferredDate}
-              onChange={handleChange}
+              value={form.values.preferredDate}
+              onChange={form.handleChange}
               required
-              disabled={isSubmitting}
+              disabled={form.isSubmitting}
               min={new Date().toISOString().split('T')[0]}
             />
           </div>
@@ -165,10 +131,10 @@ const TestDriveFormComponent: React.FC<TestDriveFormProps> = ({
             <select
               id="preferredTime"
               name="preferredTime"
-              value={formData.preferredTime}
-              onChange={handleChange}
+              value={form.values.preferredTime}
+              onChange={form.handleChange}
               required
-              disabled={isSubmitting}
+              disabled={form.isSubmitting}
             >
               <option value="">Select a time</option>
               <option value="9:00 AM">9:00 AM</option>
@@ -188,10 +154,10 @@ const TestDriveFormComponent: React.FC<TestDriveFormProps> = ({
           <textarea
             id="message"
             name="message"
-            value={formData.message}
-            onChange={handleChange}
+            value={form.values.message}
+            onChange={form.handleChange}
             rows={4}
-            disabled={isSubmitting}
+            disabled={form.isSubmitting}
             placeholder="Any specific questions or requirements?"
           />
         </div>
@@ -199,9 +165,9 @@ const TestDriveFormComponent: React.FC<TestDriveFormProps> = ({
         <button 
           type="submit" 
           className="submit-button"
-          disabled={isSubmitting}
+          disabled={form.isSubmitting}
         >
-          {isSubmitting ? 'Scheduling...' : 'Schedule Test Drive'}
+          {form.isSubmitting ? 'Scheduling...' : 'Schedule Test Drive'}
         </button>
       </form>
     </div>

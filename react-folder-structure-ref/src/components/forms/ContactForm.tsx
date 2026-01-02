@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { ContactForm, FormStatus } from '../../types';
+import React from 'react';
+import { ContactForm } from '../../types';
+import { useForm } from '../../hooks/useForm';
 import './ContactForm.scss';
 
 interface ContactFormProps {
@@ -7,59 +8,26 @@ interface ContactFormProps {
 }
 
 const ContactFormComponent: React.FC<ContactFormProps> = ({ onSubmit }) => {
-  const [formData, setFormData] = useState<ContactForm>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  });
-  
-  const [status, setStatus] = useState<FormStatus>('idle');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('submitting');
-    
-    try {
+  const form = useForm<ContactForm>({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: ''
+    },
+    onSubmit: async (values) => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       if (onSubmit) {
-        onSubmit(formData);
+        onSubmit(values);
       }
-      
-      setStatus('success');
-      
-      // Reset form after success
-      setTimeout(() => {
-        setStatus('idle');
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
-        });
-      }, 3000);
-      
-    } catch (error) {
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
-    }
-  };
-
-  const isSubmitting = status === 'submitting';
+    },
+    resetAfterSubmit: true,
+    resetDelay: 3000
+  });
 
   return (
     <div className="contact-form">
@@ -68,19 +36,19 @@ const ContactFormComponent: React.FC<ContactFormProps> = ({ onSubmit }) => {
         Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
       </p>
       
-      {status === 'success' && (
+      {form.status === 'success' && (
         <div className="form-message success">
           ✅ Thank you for your message! We'll get back to you within 24 hours.
         </div>
       )}
       
-      {status === 'error' && (
+      {form.status === 'error' && (
         <div className="form-message error">
           ❌ There was an error sending your message. Please try again.
         </div>
       )}
       
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={form.handleSubmit} className="form">
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="firstName">First Name *</label>
@@ -88,10 +56,10 @@ const ContactFormComponent: React.FC<ContactFormProps> = ({ onSubmit }) => {
               type="text"
               id="firstName"
               name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
+              value={form.values.firstName}
+              onChange={form.handleChange}
               required
-              disabled={isSubmitting}
+              disabled={form.isSubmitting}
             />
           </div>
           
@@ -101,10 +69,10 @@ const ContactFormComponent: React.FC<ContactFormProps> = ({ onSubmit }) => {
               type="text"
               id="lastName"
               name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
+              value={form.values.lastName}
+              onChange={form.handleChange}
               required
-              disabled={isSubmitting}
+              disabled={form.isSubmitting}
             />
           </div>
         </div>
@@ -116,10 +84,10 @@ const ContactFormComponent: React.FC<ContactFormProps> = ({ onSubmit }) => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={form.values.email}
+              onChange={form.handleChange}
               required
-              disabled={isSubmitting}
+              disabled={form.isSubmitting}
             />
           </div>
           
@@ -129,9 +97,9 @@ const ContactFormComponent: React.FC<ContactFormProps> = ({ onSubmit }) => {
               type="tel"
               id="phone"
               name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              disabled={isSubmitting}
+              value={form.values.phone}
+              onChange={form.handleChange}
+              disabled={form.isSubmitting}
             />
           </div>
         </div>
@@ -141,10 +109,10 @@ const ContactFormComponent: React.FC<ContactFormProps> = ({ onSubmit }) => {
           <select
             id="subject"
             name="subject"
-            value={formData.subject}
-            onChange={handleChange}
+            value={form.values.subject}
+            onChange={form.handleChange}
             required
-            disabled={isSubmitting}
+            disabled={form.isSubmitting}
           >
             <option value="">Select a subject</option>
             <option value="General Inquiry">General Inquiry</option>
@@ -162,11 +130,11 @@ const ContactFormComponent: React.FC<ContactFormProps> = ({ onSubmit }) => {
           <textarea
             id="message"
             name="message"
-            value={formData.message}
-            onChange={handleChange}
+            value={form.values.message}
+            onChange={form.handleChange}
             rows={6}
             required
-            disabled={isSubmitting}
+            disabled={form.isSubmitting}
             placeholder="Please provide details about your inquiry..."
           />
         </div>
@@ -174,9 +142,9 @@ const ContactFormComponent: React.FC<ContactFormProps> = ({ onSubmit }) => {
         <button 
           type="submit" 
           className="submit-button"
-          disabled={isSubmitting}
+          disabled={form.isSubmitting}
         >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
+          {form.isSubmitting ? 'Sending...' : 'Send Message'}
         </button>
       </form>
     </div>
