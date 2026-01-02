@@ -1,0 +1,78 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.header {
+  background: linear-gradient(135deg, $primary-red, $secondary-red);
+  color: $bg-white;
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+  box-shadow: $shadow-sm;
+}
+
+.header-container {
+  @include container;
+  @include flex-between;
+  height: 70px;
+}
+
+.logo {
+  text-decoration: none;
+  
+  h1 {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    margin: 0;
+    color: $bg-white;
+    letter-spacing: 1px;
+    
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: $spacing-xl;
+  
+  @include mobile {
+    gap: $spacing-md;
+  }
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: $bg-white;
+  text-decoration: none;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-large;
+  padding: $spacing-sm 0;
+  transition: all $transition-normal;
+  border-bottom: 2px solid transparent;
+  
+  &:hover {
+    color: $bg-white;
+    border-bottom-color: $bg-white;
+  }
+  
+  &.active {
+    border-bottom-color: $bg-white;
+    font-weight: $font-weight-semibold;
+  }
+  
+  @include mobile {
+    font-size: $font-size-medium;
+  }
+}

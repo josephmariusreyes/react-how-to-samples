@@ -1,0 +1,125 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.footer {
+  background-color: $bg-dark;
+  color: $bg-white;
+  margin-top: auto;
+}
+
+.footer-container {
+  @include container;
+  padding: $spacing-4xl $container-padding $container-padding;
+  
+  @include mobile {
+    padding: $spacing-3xl $container-padding-mobile $container-padding-mobile;
+  }
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $spacing-xl;
+  margin-bottom: $spacing-xl;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
+
+.footer-section {
+  h3 {
+    color: $primary-red;
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-md;
+    font-weight: $font-weight-bold;
+  }
+
+  h4 {
+    color: $bg-white;
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-md;
+    font-weight: $font-weight-semibold;
+  }
+
+  p {
+    margin: $spacing-sm 0;
+    color: $text-lightest;
+    line-height: 1.6;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: $spacing-sm 0;
+
+      a {
+        color: $text-lightest;
+        text-decoration: none;
+        transition: color $transition-normal;
+
+        &:hover {
+          color: $primary-red;
+        }
+      }
+    }
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: $spacing-md;
+  margin-top: $spacing-md;
+
+  a {
+    font-size: $font-size-2xl;
+    text-decoration: none;
+    transition: transform $transition-normal;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.footer-bottom {
+  border-top: 1px solid $bg-medium;
+  padding-top: $spacing-lg;
+  @include flex-between;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+
+  p {
+    margin: 0;
+    color: $text-lighter;
+  }
+  
+  @include mobile {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.footer-links {
+  display: flex;
+  gap: $spacing-lg;
+
+  a {
+    color: $text-lighter;
+    text-decoration: none;
+    font-size: $font-size-normal;
+    transition: color $transition-normal;
+
+    &:hover {
+      color: $primary-red;
+    }
+  }
+  
+  @include mobile {
+    justify-content: center;
+  }
+}
