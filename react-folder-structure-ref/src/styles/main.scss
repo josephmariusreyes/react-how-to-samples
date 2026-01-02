@@ -1,0 +1,75 @@
+// Main SCSS entry point
+// Import base styles and configurations
+
+// 1. Configuration and helpers
+@import 'variables';
+@import 'mixins';
+
+// 2. Base and reset styles
+@import '../index.scss';
+
+// 3. Layout and component styles are imported individually by components
+// This approach ensures better code splitting and performance
+
+// 4. Utility classes (can be extended as needed)
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Responsive utilities
+.d-mobile {
+  display: none;
+  
+  @include mobile {
+    display: block;
+  }
+}
+
+.d-desktop {
+  display: block;
+  
+  @include mobile {
+    display: none;
+  }
+}
+
+// Animation utilities
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

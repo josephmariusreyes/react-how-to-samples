@@ -1,0 +1,102 @@
+// Toyota Brand Colors
+$primary-red: #c8102e;
+$secondary-red: #e60012;
+$dark-red: #a00e26;
+$darker-red: #cc0010;
+
+// Gray Scale
+$text-dark: #333;
+$text-medium: #666;
+$text-light: #888;
+$text-lighter: #999;
+$text-lightest: #cccccc;
+
+// Background Colors
+$bg-white: #ffffff;
+$bg-light: #f8f9fa;
+$bg-lighter: #f1f1f1;
+$bg-dark: #1a1a1a;
+$bg-medium: #333333;
+
+// Border Colors
+$border-light: #e1e5e9;
+$border-lighter: #eee;
+$border-medium: #ddd;
+
+// Status Colors
+$success-bg: #d4edda;
+$success-text: #155724;
+$success-border: #c3e6cb;
+$error-bg: #f8d7da;
+$error-text: #721c24;
+$error-border: #f5c6cb;
+
+// Typography
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+$font-code: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+// Font Weights
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// Font Sizes
+$font-size-small: 0.8rem;
+$font-size-normal: 0.95rem;
+$font-size-medium: 1rem;
+$font-size-large: 1.1rem;
+$font-size-xl: 1.2rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 2rem;
+$font-size-4xl: 2.2rem;
+$font-size-5xl: 3rem;
+$font-size-6xl: 3.5rem;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 2.5rem;
+$spacing-3xl: 3rem;
+$spacing-4xl: 4rem;
+
+// Border Radius
+$border-radius-sm: 4px;
+$border-radius-md: 6px;
+$border-radius-lg: 8px;
+$border-radius-xl: 12px;
+$border-radius-round: 50%;
+$border-radius-pill: 20px;
+
+// Box Shadows
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
+$shadow-xl: 0 8px 30px rgba(0, 0, 0, 0.12);
+$shadow-primary: 0 4px 8px rgba(200, 16, 46, 0.3);
+
+// Breakpoints
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 968px;
+$breakpoint-xl: 1200px;
+
+// Container
+$container-max-width: 1200px;
+$container-padding: 20px;
+$container-padding-mobile: 15px;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Z-index
+$z-header: 1000;
+$z-modal: 2000;
+$z-tooltip: 3000;

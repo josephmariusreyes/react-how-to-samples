@@ -1,0 +1,208 @@
+@import 'variables';
+
+// Button Mixins
+@mixin button-base {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: $border-radius-sm;
+  text-decoration: none;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-normal;
+  text-align: center;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: linear-gradient(135deg, $primary-red, $secondary-red);
+  color: $bg-white;
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, $dark-red, $darker-red);
+    transform: translateY(-2px);
+    box-shadow: $shadow-primary;
+  }
+
+  &:disabled {
+    background: $text-medium;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: transparent;
+  color: $primary-red;
+  border: 2px solid $primary-red;
+
+  &:hover:not(:disabled) {
+    background: $primary-red;
+    color: $bg-white;
+    transform: translateY(-2px);
+  }
+}
+
+// Card Mixins
+@mixin card {
+  background: $bg-white;
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-md;
+  overflow: hidden;
+  transition: all $transition-normal;
+}
+
+@mixin card-hover {
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Form Mixins
+@mixin form-input {
+  padding: 0.75rem;
+  border: 2px solid $border-light;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-medium;
+  transition: border-color $transition-normal;
+  background-color: $bg-white;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-red;
+  }
+
+  &:disabled {
+    background-color: $bg-light;
+    cursor: not-allowed;
+  }
+}
+
+@mixin form-label {
+  font-weight: $font-weight-semibold;
+  color: $text-dark;
+  margin-bottom: $spacing-sm;
+  font-size: $font-size-normal;
+  display: block;
+}
+
+// Layout Mixins
+@mixin container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+
+  @media (max-width: $breakpoint-md) {
+    padding: 0 $container-padding-mobile;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Typography Mixins
+@mixin heading-1 {
+  font-size: $font-size-6xl;
+  font-weight: $font-weight-extrabold;
+  color: $text-dark;
+  line-height: 1.2;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-4xl;
+  }
+}
+
+@mixin heading-2 {
+  font-size: $font-size-5xl;
+  font-weight: $font-weight-bold;
+  color: $text-dark;
+  line-height: 1.2;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-3xl;
+  }
+}
+
+@mixin heading-3 {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-semibold;
+  color: $text-dark;
+  line-height: 1.2;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: $font-size-2xl;
+  }
+}
+
+// Responsive Mixins
+@mixin mobile {
+  @media (max-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+// Grid Mixins
+@mixin grid-responsive($min-width: 300px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  gap: $spacing-xl;
+}
+
+// Animation Mixins
+@mixin hover-lift {
+  transition: transform $transition-normal, box-shadow $transition-normal;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// Status Message Mixins
+@mixin status-message {
+  padding: $spacing-md;
+  border-radius: $border-radius-sm;
+  margin-bottom: $spacing-lg;
+  font-weight: $font-weight-medium;
+}
+
+@mixin status-success {
+  @include status-message;
+  background-color: $success-bg;
+  color: $success-text;
+  border: 1px solid $success-border;
+}
+
+@mixin status-error {
+  @include status-message;
+  background-color: $error-bg;
+  color: $error-text;
+  border: 1px solid $error-border;
+}
